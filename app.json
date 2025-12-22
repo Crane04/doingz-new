@@ -1,0 +1,79 @@
+{
+  "expo": {
+    "scheme": "doingz.app",
+    "name": "doingz",
+    "slug": "doingz",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/logo2.png",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": false,
+    "splash": {
+      "image": "./assets/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0A0A0A"
+    },
+    "description": "The fastest way to spray money at events. Beautiful notes, real-time chat, leaderboards.",
+    "title": "Doingz – Send Money with Style",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.rahmayowa.doingz",
+      "runtimeVersion": "1.0.0",
+      "usesAppleSignIn": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/logo2.png",
+        "backgroundColor": "#0A0A0A"
+      },
+      "edgeToEdgeEnabled": true,
+      "runtimeVersion": "1.0.0",
+      "package": "com.rahmayowa.doingz",
+      "googleServicesFile": "./android/app/google-services.json"
+    },
+    "web": {
+      "favicon": "./assets/logo.png",
+      "output": "static",
+      "bundler": "metro",
+      "title": "Doingz – Send Money with Style",
+      "description": "The fastest way to spray money at events. Beautiful notes, real-time chat, leaderboards.",
+      "meta": {
+        "viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
+        "og:title": "Doingz – Spray Money with Style",
+        "og:description": "Send money like a boss at events. Beautiful notes, real-time chat, and leaderboards.",
+        "og:image": "https://doingz.app/assets/doingz_logo.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "Doingz app screenshot – sending money at an event",
+        "og:url": "https://party.doingz.app",
+        "og:type": "website",
+        "og:site_name": "Doingz",
+
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Doingz – Spray Money with Style",
+        "twitter:description": "Send money like a boss at events.",
+        "twitter:image": "https://doingz.app/assets/doingz_logo.png",
+
+        "og:locale": "en_US"
+      }
+    },
+    "notification": {
+      "vapidPublicKey": "50b99b7d-dbd3-4ec7-b4d8-2945586f5b4a"
+    },
+
+    "plugins": [
+      "expo-font",
+      "expo-apple-authentication",
+      "@react-native-google-signin/google-signin",
+      ["expo-router"]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "50b99b7d-dbd3-4ec7-b4d8-2945586f5b4a"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/50b99b7d-dbd3-4ec7-b4d8-2945586f5b4a"
+    }
+  }
+}

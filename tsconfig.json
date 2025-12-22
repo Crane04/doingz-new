@@ -1,0 +1,14 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src/",
+    "paths": {
+      "@types/*": ["src/types/*"],
+      "@/screens/*": ["src/screens/*"]
+    },
+    "ignoreDeprecations": "6.0"
+  }
+}
