@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-    width: "100%",
+    // width: "100%",
   },
   modalContent: {
     backgroundColor: COLORS.dark,
@@ -179,11 +179,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   input: {
-    // flex: 1,
+    flex: 1,
     color: COLORS.white,
     paddingHorizontal: 10,
     paddingVertical: 5,
-    width: "100%",
   },
 });
 

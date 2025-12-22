@@ -10,7 +10,6 @@ import WithdrawModal from "./WithdrawModal";
 import { useVersion } from "contexts/VersionContext";
 
 const WalletCard: React.FC = () => {
-  const [showBalance, setShowBalance] = useState(true);
   const [isSprayModalOpen, setIsSprayModalOpen] = useState(false);
   const [isFundModalOpen, setIsFundModalOpen] = useState(false);
   const [isWalletModalOpen, setIsWalletModalOpen] = useState(false);

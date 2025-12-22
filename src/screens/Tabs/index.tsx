@@ -21,6 +21,8 @@ export default function TabNavigation() {
   const [unreadCount, setUnreadCount] = useState<number>(0);
   const isFocused = useIsFocused();
 
+  console.log(user);
+
   useEffect(() => {
     const fetchNotifications = async () => {
       const count = await getUnreadNotificationCount();

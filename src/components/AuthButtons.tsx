@@ -38,22 +38,23 @@ export default function AuthOptions() {
         onPress={() => router.push("/(auth)/signin")}
       />
 
-      <GoogleSignIn />
+      {/* <GoogleSignIn /> */}
 
       {/* Apple / Google */}
-      {/* {Platform.OS === "ios" ? (
+      {Platform.OS === "ios" ? (
         <NextButton
           text="Continue with Apple"
           leftIcon="logo-apple"
           onPress={() => appleSignIn(setUser)}
         />
       ) : (
-        <NextButton
-          text="Continue with Google"
-          leftIcon="logo-google"
-          // onPress={() => googleSignIn(setUser)}
-        />
-      )} */}
+        <></>
+        // <NextButton
+        //   text="Continue with Google"
+        //   leftIcon="logo-google"
+        //   // onPress={() => googleSignIn(setUser)}
+        // />
+      )}
     </View>
   );
 }

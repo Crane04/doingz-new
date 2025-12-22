@@ -7,7 +7,6 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import WalletCard from "components/WalletCard";
-import Container from "components/TabContainer";
 import CreateEventModal from "components/home/CreateEventModal";
 import COLORS from "constants/colors";
 import { useEvents } from "contexts/EventContext";
@@ -15,6 +14,7 @@ import EmptyState from "components/home/EmptyState";
 import EventCard from "components/home/EventCard";
 import LoadingState from "components/home/LoadingState";
 import SearchBar from "components/SearchBar";
+import { useUser } from "contexts/UserContext";
 
 const HomeScreen: React.FC = () => {
   const [isCreateEventOpen, setIsCreateEventOpen] = useState(false);
@@ -27,7 +27,7 @@ const HomeScreen: React.FC = () => {
   };
 
   return (
-    <Container>
+    <>
       <ScrollView
         stickyHeaderIndices={[1]}
         contentContainerStyle={[styles.listContent]}
@@ -39,6 +39,7 @@ const HomeScreen: React.FC = () => {
             colors={[COLORS.primary]}
           />
         }
+        style={{ backgroundColor: COLORS.dark }}
       >
         <WalletCard />
 
@@ -68,13 +69,14 @@ const HomeScreen: React.FC = () => {
         visible={isCreateEventOpen}
         onClose={() => setIsCreateEventOpen(false)}
       />
-    </Container>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   listContent: {
     paddingBottom: 80,
+    backgroundColor: COLORS.dark,
   },
   emptyListContent: {
     flexGrow: 1,

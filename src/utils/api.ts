@@ -36,6 +36,7 @@ apiClient.interceptors.request.use(async (config) => {
 
 // Generic error handler
 const handleError = (error: any): ApiError => {
+  console.error(error);
   if (axios.isAxiosError(error)) {
     return {
       message:

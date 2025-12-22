@@ -92,8 +92,8 @@ const Event: React.FC = () => {
 
   return (
     <>
+      <Header title={event?.name} />
       <View style={styles.container}>
-        <Header title={event?.name} />
         <TopSpenders topSpenders={topSpenders} />
         <BalanceDisplay balance={balance} />
         <SwipeSection
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.dark,
     // padding: 16,
     marginVertical: 20,
-    // justifyContent: "space-evenly",
+    justifyContent: "space-evenly",
   },
   messageIcon: {
     position: "absolute",

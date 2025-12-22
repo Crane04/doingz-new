@@ -1,7 +1,8 @@
 import * as AppleAuthentication from "expo-apple-authentication";
 import { post } from "utils/api";
-import { useNavigation } from "hooks/useNavigation";
 import { User } from "contexts/UserContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
 
 interface AppleSignInResponse {
   success: boolean;
@@ -10,7 +11,7 @@ interface AppleSignInResponse {
 }
 
 export const useAppleSignIn = () => {
-  const navigation = useNavigation();
+  const router = useRouter();
 
   const appleSignIn = async (setUser: (user: User) => void) => {
     try {
@@ -27,16 +28,25 @@ export const useAppleSignIn = () => {
         return;
       }
 
-      // 🚀 Send the identity token to your backend for verification/login
       const { data, status } = await post<AppleSignInResponse>(
         "users/apple-auth",
         { token: credential.identityToken }
       );
 
+      console.log(data);
+
       if (status === 200 && data?.data) {
         console.log("✅ Apple sign-in successful:", data.data);
         setUser(data.data);
-        navigation.navigate("Main");
+
+        const token = data.data.authentication?.sessionToken;
+        if (token) {
+          await AsyncStorage.setItem("sessionToken", token);
+          console.log("Session Token stored:", token);
+          router.push("/(app)");
+        } else {
+          console.warn("No session token found in response");
+        }
       } else {
         console.warn(
           "❌ Apple sign-in failed:",

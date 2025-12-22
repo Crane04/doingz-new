@@ -1,6 +1,8 @@
 import { useEffect, useRef, useCallback } from "react";
 import { io, Socket } from "socket.io-client";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import server from "constants/server";
+
 const BASE_URL = `${server}/spray`;
 
 interface SprayPayload {
@@ -16,6 +18,11 @@ interface ChatPayload {
   text: string;
 }
 
+interface JoinRoomPayload {
+  identifier: string;
+  type: "event" | "user";
+}
+
 interface UseSpraySocketProps {
   onConnected?: () => void;
   onJoinedRoom?: () => void;
@@ -23,7 +30,7 @@ interface UseSpraySocketProps {
   onSprayError?: (error: string) => void;
   onLeaderboard?: (data: any) => void;
   onSprayed?: (data: any) => void;
-  onMessaged?: (data: any) => void; // Receives messages
+  onMessaged?: (data: any) => void;
 }
 
 export function useSpraySocket({
@@ -37,62 +44,89 @@ export function useSpraySocket({
 }: UseSpraySocketProps) {
   const socketRef = useRef<Socket | null>(null);
 
+  // 🔐 Persist room info for reconnects
+  const joinRoomRef = useRef<JoinRoomPayload | null>(null);
+
   useEffect(() => {
-    const socket = io(BASE_URL, {
-      reconnection: true,
-      reconnectionAttempts: Infinity,
-      auth: {
-        sessionToken: localStorage.getItem("sessionToken"),
-      },
-    });
-    socketRef.current = socket;
+    let socket: Socket | null = null;
+    let mounted = true;
 
-    socket.on("connect", () => {
-      onConnected?.();
-    });
+    const connectSocket = async () => {
+      const sessionToken = await AsyncStorage.getItem("sessionToken");
+      if (!mounted) return;
 
-    socket.on("joinedRoom", () => {
-      onJoinedRoom?.();
-    });
+      socket = io(BASE_URL, {
+        reconnection: true,
+        reconnectionAttempts: Infinity,
+        auth: {
+          sessionToken,
+        },
+      });
 
-    socket.on("joinRoom_error", (error) => {
-      console.error("❌ Join room error:", error.message);
-      onJoinRoomError?.(error.message);
-    });
+      socketRef.current = socket;
 
-    socket.on("spray_error", (error) => {
-      onSprayError?.(error.message);
-    });
+      // 🔌 Connected or reconnected
+      socket.on("connect", () => {
+        onConnected?.();
 
-    socket.on("leaderboard", (data) => {
-      onLeaderboard?.(data);
-    });
+        // ✅ Always rejoin room on connect / reconnect
+        if (joinRoomRef.current) {
+          socket?.emit("joinRoom", joinRoomRef.current);
+        }
+      });
 
-    socket.on("sprayed", (data) => {
-      onSprayed?.(data);
-    });
+      socket.on("joinedRoom", () => {
+        onJoinedRoom?.();
+      });
 
-    socket.on("message", (data) => {
-      console.log("💬 New message:", data);
-      onMessaged?.(data);
-    });
+      socket.on("joinRoom_error", (error) => {
+        onJoinRoomError?.(error.message);
+      });
+
+      socket.on("spray_error", (error) => {
+        onSprayError?.(error.message);
+      });
+
+      socket.on("leaderboard", (data) => {
+        onLeaderboard?.(data);
+      });
+
+      socket.on("sprayed", (data) => {
+        onSprayed?.(data);
+      });
+
+      socket.on("message", (data) => {
+        onMessaged?.(data);
+      });
+    };
+
+    connectSocket();
 
     return () => {
-      socket.disconnect();
+      mounted = false;
+      socket?.disconnect();
       socketRef.current = null;
-      console.log("🔌 Disconnected from Spray socket");
     };
   }, []);
 
-  // --- Exposed functions ---
+  // 🏠 Join or queue room
   const joinRoom = useCallback((identifier: string, type: "event" | "user") => {
-    socketRef.current?.emit("joinRoom", { identifier, type });
+    const payload: JoinRoomPayload = { identifier, type };
+
+    // Save for reconnect
+    joinRoomRef.current = payload;
+
+    if (socketRef.current?.connected) {
+      socketRef.current.emit("joinRoom", payload);
+    }
   }, []);
 
+  // 💸 Spray event
   const spray = useCallback((payload: SprayPayload) => {
     socketRef.current?.emit("spray", payload);
   }, []);
 
+  // 💬 Chat message
   const sendMessage = useCallback((payload: ChatPayload) => {
     socketRef.current?.emit("message", payload);
   }, []);

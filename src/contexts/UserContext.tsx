@@ -30,6 +30,9 @@ export interface User {
     balance: number;
     user: string;
   };
+  authentication?: {
+    sessionToken: string;
+  };
 }
 
 interface UserContextType {
@@ -99,6 +102,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
     const updatePushToken = async () => {
       if (!user) return;
       if (!expoPushToken?.data) return;
+
+      console.log({ expoPushToken });
 
       if (expoPushToken.data !== user.pushToken) {
         await setPushToken(expoPushToken.data);

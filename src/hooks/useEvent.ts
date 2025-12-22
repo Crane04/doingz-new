@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useRoute } from "@react-navigation/native";
 import { getEventById } from "services/eventService";
 import { useWallet } from "contexts/WalletContext";
 import { useSpraySocket } from "../hooks/useSpray";

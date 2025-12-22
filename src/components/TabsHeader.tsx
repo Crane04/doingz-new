@@ -1,19 +1,10 @@
 import React, { useRef, useState } from "react";
-import {
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  Image,
-  Pressable,
-  Animated,
-} from "react-native";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { View, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 import Text from "elements/Text";
 import NotificationsModal from "components/notifications/modal";
 import { getUserNotifications } from "services/notificationService";
 import COLORS from "constants/colors";
-import { useWallet } from "contexts/WalletContext";
-import { useEvents } from "contexts/EventContext";
 
 interface TabsHeaderProps {
   username: string;
@@ -29,9 +20,6 @@ const TabsHeader: React.FC<TabsHeaderProps> = ({
   const [showModal, setShowModal] = useState(false);
   const [notifications, setNotifications] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-  const { refreshWallet } = useWallet();
-  const rotateAnim = useRef(new Animated.Value(0)).current;
-  const { fetchEvents } = useEvents();
 
   const openModal = async () => {
     setShowModal(true);
@@ -40,24 +28,6 @@ const TabsHeader: React.FC<TabsHeaderProps> = ({
     setNotifications(data);
     setLoading(false);
   };
-
-  const handleRefresh = () => {
-    Animated.timing(rotateAnim, {
-      toValue: 1,
-      duration: 600,
-      useNativeDriver: true,
-    }).start(() => {
-      rotateAnim.setValue(0);
-    });
-
-    refreshWallet();
-    fetchEvents();
-  };
-
-  const spin = rotateAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ["0deg", "360deg"],
-  });
 
   return (
     <>
@@ -77,11 +47,6 @@ const TabsHeader: React.FC<TabsHeaderProps> = ({
         </View>
 
         <View style={{ flexDirection: "row" }}>
-          <Pressable onPress={handleRefresh} style={styles.eyeButton}>
-            <Animated.View style={{ transform: [{ rotate: spin }] }}>
-              <Ionicons name="refresh-outline" size={26} color={COLORS.white} />
-            </Animated.View>
-          </Pressable>
           <TouchableOpacity onPress={openModal} style={styles.bellButton}>
             <MaterialIcons
               name="notifications"
