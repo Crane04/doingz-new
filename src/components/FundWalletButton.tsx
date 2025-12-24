@@ -7,7 +7,7 @@ import COLORS from "constants/colors";
 const FundWalletButton: React.FC<{ onPress: () => void }> = ({ onPress }) => (
   <TouchableOpacity style={styles.button} onPress={onPress}>
     <Ionicons name="add" size={16} color={COLORS.dark} />
-    <Text style={styles.text}>Fund Wallet</Text>
+    <Text style={styles.text}>Get Doingz</Text>
   </TouchableOpacity>
 );
 

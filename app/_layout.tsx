@@ -15,8 +15,8 @@ import { EventProvider } from "contexts/EventContext";
 import { StatusBar } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
-if (__DEV__) {
-  // console.log = () => {};
+if (!__DEV__) {
+  console.log = () => {};
   console.error = () => {};
   console.info = () => {};
 }

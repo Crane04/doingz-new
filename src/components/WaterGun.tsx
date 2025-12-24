@@ -124,7 +124,7 @@ const WaterGun: React.FC<WaterGunProps> = ({
 
             {/* Amount Badge */}
             <View style={styles.amountBadge}>
-              <Text style={styles.amountText}>₦{amount}</Text>
+              <Text style={styles.amountText}>🔥₦{amount}</Text>
             </View>
           </View>
 

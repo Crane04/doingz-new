@@ -30,13 +30,12 @@ import Header from "components/Header";
 interface ManageEventData extends BackendEvent {
   totalAmount: number;
   attendees: number;
-  active?: boolean;
+  active: boolean;
   cashedOut: boolean;
 }
 
 const ManageEvent: React.FC = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
-
   const { version } = useVersion();
   const [event, setEvent] = useState<ManageEventData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -206,10 +205,12 @@ const ManageEvent: React.FC = () => {
             formatDate={formatDate}
           />
 
-          <WithdrawSection
-            cashedOut={event.cashedOut}
-            eventIdentifier={event.eventId}
-          />
+          {!version?.hidden && (
+            <WithdrawSection
+              cashedOut={event.cashedOut}
+              eventIdentifier={event.eventId}
+            />
+          )}
         </ScrollView>
 
         <HostControlsModal

@@ -5,8 +5,6 @@ import { Ionicons } from "@expo/vector-icons";
 import Text from "elements/Text";
 import COLORS from "constants/colors";
 import { useVersion } from "contexts/VersionContext";
-import { useWallet } from "contexts/WalletContext";
-import { useEvents } from "contexts/EventContext";
 
 interface Props {
   balance: number;
@@ -16,11 +14,8 @@ interface Props {
 const BALANCE_KEY = "@show_balance";
 
 const BalanceSection: React.FC<Props> = ({ balance, onWithdraw }) => {
-  const [showBalance, setShowBalance] = useState(true); // default to true
-  const rotateAnim = useRef(new Animated.Value(0)).current;
+  const [showBalance, setShowBalance] = useState(true);
   const { version } = useVersion();
-  const { refreshWallet } = useWallet();
-  const { fetchEvents } = useEvents();
 
   useEffect(() => {
     const loadPreference = async () => {
@@ -53,30 +48,10 @@ const BalanceSection: React.FC<Props> = ({ balance, onWithdraw }) => {
     minimumFractionDigits: 2,
   }).format(balance);
 
-  const handleRefresh = () => {
-    Animated.timing(rotateAnim, {
-      toValue: 1,
-      duration: 600,
-      useNativeDriver: true,
-    }).start(() => {
-      rotateAnim.setValue(0);
-    });
-
-    refreshWallet();
-    fetchEvents();
-  };
-
-  const spin = rotateAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ["0deg", "360deg"],
-  });
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.label}>Available Balance</Text>
-
-
+        <Text style={styles.label}>Available Doingz</Text>
 
         <Pressable onPress={toggleBalance} style={styles.eyeButton}>
           <Ionicons
@@ -92,13 +67,15 @@ const BalanceSection: React.FC<Props> = ({ balance, onWithdraw }) => {
           styles.balanceRow,
           pressed && { opacity: 0.6, transform: [{ scale: 0.98 }] },
         ]}
-        onPress={onWithdraw}
+        onPress={() => {
+          if (balance > 0) onWithdraw();
+        }}
       >
         <Text style={styles.balance}>
-          {showBalance ? `₦${formattedBalance}` : "*****"}
+          {showBalance ? `🔥${formattedBalance}` : "*****"}
         </Text>
 
-        {!version?.hidden && (
+        {!version?.hidden && balance > 0 && (
           <Ionicons
             name="chevron-forward"
             size={18}
@@ -122,7 +99,7 @@ const styles = StyleSheet.create({
   },
   eyeButton: { padding: 4 },
   balanceRow: { flexDirection: "row", alignItems: "center" },
-  balance: { color: COLORS.dark, fontSize: 24, fontWeight: "bold" },
+  balance: { color: COLORS.dark, fontSize: 24 },
   chevron: { marginLeft: 6 },
 });
 

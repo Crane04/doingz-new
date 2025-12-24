@@ -29,11 +29,7 @@ const Home_ = () => {
     return () => subscription.remove();
   }, [refreshWallet]);
 
-  return (
-    // <EventProvider>
-      <Home />
-    // </EventProvider>
-  );
+  return <Home />;
 };
 
 export default Home_;

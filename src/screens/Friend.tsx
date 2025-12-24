@@ -6,12 +6,10 @@ import SwipeSection from "components/SwipeSection";
 import AmountSelector from "components/AmountSelector";
 import COLORS from "../constants/colors";
 import { useEvent } from "../hooks/useEvent";
-import { useRoute, RouteProp } from "@react-navigation/native";
-import { RootStackParamList } from "../types/navigation";
 import { useLocalSearchParams } from "expo-router";
 import Header from "components/Header";
-
-type FriendRouteProp = RouteProp<RootStackParamList, "Friend">;
+import { useVersion } from "contexts/VersionContext";
+import Loading from "components/common/Loading";
 
 const Friend: React.FC = () => {
   const {
@@ -26,7 +24,8 @@ const Friend: React.FC = () => {
     handleSwipe,
   } = useEvent("user");
 
-  const { id, name, profilePic } = useLocalSearchParams<{
+  const { version } = useVersion();
+  const { name, profilePic } = useLocalSearchParams<{
     id: string;
     name?: string;
     profilePic?: string;
@@ -34,9 +33,11 @@ const Friend: React.FC = () => {
 
   if (loading) {
     return (
-      <View style={styles.center}>
-        <ActivityIndicator size="large" color={COLORS.primary} />
-      </View>
+      <>
+        <View style={styles.center}>
+          <Loading />
+        </View>
+      </>
     );
   }
 
@@ -67,12 +68,14 @@ const Friend: React.FC = () => {
           setSprays={setSprays}
           handleSwipe={handleSwipe}
         />
-        <AmountSelector
-          selectedAmount={selectedAmount}
-          setSelectedAmount={setSelectedAmount}
-          amountError={amountError}
-          setAmountError={setAmountError}
-        />
+        {!version?.hidden && (
+          <AmountSelector
+            selectedAmount={selectedAmount}
+            setSelectedAmount={setSelectedAmount}
+            amountError={amountError}
+            setAmountError={setAmountError}
+          />
+        )}
       </View>
     </>
   );
@@ -82,9 +85,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.dark,
-    padding: 16,
+    // padding: 16,
     marginVertical: 20,
-    justifyContent: "center",
+    justifyContent: "space-evenly",
   },
   profileImage: {
     width: 100,

@@ -39,7 +39,7 @@ const BankNote: React.FC<BankNoteProps> = ({ amount, onLayout }) => {
           {/* Top Row */}
           <View style={styles.row}>
             <Text style={styles.amount} numberOfLines={1} adjustsFontSizeToFit>
-              ₦{formatted}
+              ✨{formatted}
             </Text>
             <Text style={[styles.brand, styles.alignRight]}>doingz</Text>
           </View>
@@ -54,7 +54,7 @@ const BankNote: React.FC<BankNoteProps> = ({ amount, onLayout }) => {
               numberOfLines={1}
               adjustsFontSizeToFit
             >
-              ₦{formatted}
+              ✨{formatted}
             </Text>
           </View>
         </View>

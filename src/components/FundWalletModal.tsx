@@ -93,7 +93,7 @@ const FundWalletModal: React.FC<FundWalletModalProps> = ({
     >
       <View style={styles.modalContainer}>
         <View style={styles.fundContainer}>
-          <ModalHeader onClose={handleClose} text="Fund Wallet" />
+          <ModalHeader onClose={handleClose} text="Get Doingz" />
           <View style={styles.content}>
             {!paymentLink ? (
               <>

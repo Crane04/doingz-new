@@ -31,11 +31,7 @@ const EventHeader: React.FC<EventHeaderProps> = ({
           <Text weight="bold" style={styles.eventName}>
             {event.name}
           </Text>
-          <TouchableOpacity
-            style={styles.hostBadge}
-            onPress={onHostControlsPress}
-          >
-            {/* <Ionicons name="crown" size={16} color={COLORS.secondary} /> */}
+          <TouchableOpacity style={styles.hostBadge}>
             <Text style={styles.hostBadgeText}>Host:</Text>
             <Text style={styles.hostBadgeText}>{event.host}</Text>
           </TouchableOpacity>

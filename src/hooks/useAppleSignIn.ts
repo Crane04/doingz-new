@@ -33,8 +33,6 @@ export const useAppleSignIn = () => {
         { token: credential.identityToken }
       );
 
-      console.log(data);
-
       if (status === 200 && data?.data) {
         console.log("✅ Apple sign-in successful:", data.data);
         setUser(data.data);

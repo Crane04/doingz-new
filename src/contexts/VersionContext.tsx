@@ -23,6 +23,17 @@ const VersionContext = createContext<VersionContextType>({
   loading: true,
 });
 
+export const getStoredVersion = async () => {
+  const stored = await AsyncStorage.getItem("appVersion");
+  if (!stored) return null;
+
+  try {
+    return JSON.parse(stored);
+  } catch {
+    return null;
+  }
+};
+
 export const VersionProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {

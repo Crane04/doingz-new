@@ -1,26 +1,15 @@
-// src/screens/AuthOptions.tsx
 import React from "react";
 import { View, Platform } from "react-native";
 import { NextButton } from "../elements";
 import { useAppleSignIn } from "../hooks/useAppleSignIn";
-// import { useGoogleSignIn } from "../hooks/useGoogleSignIn";
 import { useUser } from "../contexts/UserContext";
-import { router } from "expo-router"; // ← This replaces your custom useNavigation hook
-import { GoogleLogin } from "@react-oauth/google";
-import GoogleSignIn from "./GoogleSignIn";
-import { jwtDecode } from "jwt-decode";
+import { router } from "expo-router";
+// import { useGoogleSignIn } from "hooks/useGoogleSignIn";
 
 export default function AuthOptions() {
   const { setUser } = useUser();
   const { appleSignIn } = useAppleSignIn();
   // const { googleSignIn } = useGoogleSignIn();
-
-  // const login = useGoogleLogin({
-  //   onSuccess: (tokenResponse) => {
-  //     console.log("Token Response:", tokenResponse);
-  //   },
-  //   onError: () => console.log("Login Failed"),
-  // });
 
   return (
     <View style={{ width: "100%" }}>
@@ -52,7 +41,7 @@ export default function AuthOptions() {
         // <NextButton
         //   text="Continue with Google"
         //   leftIcon="logo-google"
-        //   // onPress={() => googleSignIn(setUser)}
+        //   onPress={() => googleSignIn(setUser)}
         // />
       )}
     </View>

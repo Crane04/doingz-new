@@ -1,10 +1,9 @@
-import {
-  GoogleSignin,
-  statusCodes,
-} from "@react-native-google-signin/google-signin";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { useNavigation } from "./useNavigation";
 import { User } from "contexts/UserContext";
 import { post } from "utils/api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
 
 interface GoogleSignInResponse {
   success: boolean;
@@ -13,7 +12,7 @@ interface GoogleSignInResponse {
 }
 
 export const useGoogleSignIn = () => {
-  const navigation = useNavigation();
+  const router = useRouter();
   try {
     GoogleSignin.configure({
       scopes: ["https://www.googleapis.com/auth/drive.readonly"],
@@ -41,7 +40,14 @@ export const useGoogleSignIn = () => {
       if (status === 200 && data?.data) {
         console.log("✅ Apple sign-in successful:", data.data);
         setUser(data.data);
-        navigation.navigate("Main");
+        const token = data.data.authentication?.sessionToken;
+        if (token) {
+          await AsyncStorage.setItem("sessionToken", token);
+          console.log("Session Token stored:", token);
+          router.push("/(app)");
+        } else {
+          console.warn("No session token found in response");
+        }
       } else {
         console.warn(
           "❌ Google sign-in failed:",

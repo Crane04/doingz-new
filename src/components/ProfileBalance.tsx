@@ -5,8 +5,6 @@ import COLORS from "constants/colors";
 import { useVersion } from "contexts/VersionContext";
 
 const ProfileBalance: React.FC<{ balance: number }> = ({ balance }) => {
-  const { version } = useVersion();
-
   const formattedBalance = new Intl.NumberFormat("en-NG", {
     style: "decimal",
     currency: "NGN",
@@ -15,7 +13,8 @@ const ProfileBalance: React.FC<{ balance: number }> = ({ balance }) => {
 
   return (
     <Text style={styles.balance}>
-      Available {version?.hidden ? "Points" : "Balance"}: ₦{formattedBalance}
+      Available Doingz: 🔥
+      {formattedBalance}
     </Text>
   );
 };

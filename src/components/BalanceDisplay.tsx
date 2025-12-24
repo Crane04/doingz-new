@@ -10,7 +10,7 @@ interface BalanceDisplayProps {
 const BalanceDisplay: React.FC<BalanceDisplayProps> = ({ balance }) => (
   <View style={styles.container}>
     <Text style={styles.balanceText}>
-      Available Balance: ₦{balance.toLocaleString("en-NG")}
+      Available Doingz: ✨{balance.toLocaleString("en-NG")}
     </Text>
   </View>
 );

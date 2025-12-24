@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ScrollView,
   TouchableOpacity,
@@ -14,15 +14,17 @@ import EmptyState from "components/home/EmptyState";
 import EventCard from "components/home/EventCard";
 import LoadingState from "components/home/LoadingState";
 import SearchBar from "components/SearchBar";
-import { useUser } from "contexts/UserContext";
+import { useWallet } from "contexts/WalletContext";
 
 const HomeScreen: React.FC = () => {
   const [isCreateEventOpen, setIsCreateEventOpen] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const { filteredEvents, loading, fetchEvents } = useEvents();
+  const { refreshWallet } = useWallet();
   const onRefresh = async () => {
     setRefreshing(true);
     await fetchEvents();
+    await refreshWallet();
     setRefreshing(false);
   };
 

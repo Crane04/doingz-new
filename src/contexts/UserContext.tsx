@@ -103,8 +103,6 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
       if (!user) return;
       if (!expoPushToken?.data) return;
 
-      console.log({ expoPushToken });
-
       if (expoPushToken.data !== user.pushToken) {
         await setPushToken(expoPushToken.data);
 

@@ -46,26 +46,8 @@ const ProfileHeader: React.FC = () => {
     setSelectedImage(null);
   };
 
-  // Web: Use native file input
-  const pickImageWeb = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-
-    if (!file) return;
-
-    try {
-      await updateProfilePic(file, setUser);
-      alert("Profile picture updated!");
-    } catch (error) {
-      alert("Failed to upload image");
-    }
-  };
-
   // Mobile: Use Expo ImagePicker
-  const pickImageMobile = async () => {
+  const pickImage = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -82,21 +64,8 @@ const ProfileHeader: React.FC = () => {
     }
   };
 
-  const pickImage = Platform.OS === "web" ? pickImageWeb : pickImageMobile;
-
   return (
     <View style={styles.header}>
-      {/* Hidden file input for web */}
-      {Platform.OS === "web" && (
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          style={{ display: "none" }}
-        />
-      )}
-
       {/* Profile Picture */}
       <View style={styles.imageContainer}>
         <TouchableOpacity onPress={handleImagePress} activeOpacity={0.7}>

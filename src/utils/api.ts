@@ -1,9 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import server from "constants/server";
-// const BASE_URL = "http://172.20.10.5:8000/api/"; // Customize as needed
-const BASE_URL = `${server}/api/`; // Customize as needed
-
+import { getStoredVersion } from "contexts/VersionContext";
+const BASE_URL = `${server}/api/`;
 interface ApiError {
   message: string;
   status?: number;
@@ -68,9 +67,16 @@ export const post = async <T, D = any>(
   config?: AxiosRequestConfig
 ): Promise<ApiResponse<T>> => {
   try {
+    const version = await getStoredVersion();
+
+    const payload = {
+      ...data,
+      version: version?._id ?? null,
+    };
+
     const response: AxiosResponse<T> = await apiClient.post(
       endpoint,
-      data,
+      payload,
       config
     );
 
@@ -88,9 +94,16 @@ export const put = async <T, D = any>(
   config?: AxiosRequestConfig
 ): Promise<ApiResponse<T>> => {
   try {
+    const version = await getStoredVersion();
+
+    const payload = {
+      ...data,
+      version: version?._id ?? null,
+    };
+
     const response: AxiosResponse<T> = await apiClient.put(
       endpoint,
-      data,
+      payload,
       config
     );
     return { data: response.data, status: response.status };

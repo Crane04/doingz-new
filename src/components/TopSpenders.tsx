@@ -32,7 +32,7 @@ const TopSpenders: React.FC<TopSpendersProps> = ({ topSpenders }) => {
       <Text style={styles.spenderRank}>{index + 1}.</Text>
       <Text style={styles.spenderUsername}>{item.username}</Text>
       <Text style={styles.spenderAmount}>
-        ₦{item.amount.toLocaleString("en-NG")}
+        🔥{item.amount.toLocaleString("en-NG")}
       </Text>
     </View>
   );

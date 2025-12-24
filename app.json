@@ -7,7 +7,7 @@
     "orientation": "portrait",
     "icon": "./assets/logo2.png",
     "userInterfaceStyle": "dark",
-    "newArchEnabled": false,
+    "newArchEnabled": true,
     "splash": {
       "image": "./assets/logo.png",
       "resizeMode": "contain",
@@ -19,7 +19,11 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.rahmayowa.doingz",
       "runtimeVersion": "1.0.0",
-      "usesAppleSignIn": true
+      "usesAppleSignIn": true,
+      "appleTeamId": "KUFS7DTNH9",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -28,8 +32,7 @@
       },
       "edgeToEdgeEnabled": true,
       "runtimeVersion": "1.0.0",
-      "package": "com.rahmayowa.doingz",
-      "googleServicesFile": "./android/app/google-services.json"
+      "package": "com.rahmayowa.doingz"
     },
     "web": {
       "favicon": "./assets/logo.png",
@@ -48,19 +51,16 @@
         "og:url": "https://party.doingz.app",
         "og:type": "website",
         "og:site_name": "Doingz",
-
         "twitter:card": "summary_large_image",
         "twitter:title": "Doingz – Spray Money with Style",
         "twitter:description": "Send money like a boss at events.",
         "twitter:image": "https://doingz.app/assets/doingz_logo.png",
-
         "og:locale": "en_US"
       }
     },
     "notification": {
       "vapidPublicKey": "50b99b7d-dbd3-4ec7-b4d8-2945586f5b4a"
     },
-
     "plugins": [
       "expo-font",
       "expo-apple-authentication",

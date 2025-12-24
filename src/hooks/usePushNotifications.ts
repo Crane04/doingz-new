@@ -94,7 +94,6 @@ export const usePushNotifications = (): PushNotificationHook | void => {
     };
   }, []);
 
-  console.log(expoPushToken);
   return {
     expoPushToken,
     notification,
