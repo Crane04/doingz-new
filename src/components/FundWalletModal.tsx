@@ -182,7 +182,6 @@ const styles = StyleSheet.create({
     color: COLORS.light,
     textAlign: "center",
     marginBottom: 20,
-    fontWeight: "600",
   },
   linkButton: {
     backgroundColor: "rgba(255, 255, 255, 0.1)",

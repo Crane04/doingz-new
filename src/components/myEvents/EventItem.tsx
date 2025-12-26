@@ -139,7 +139,6 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     fontSize: 11,
-    fontWeight: "600",
   },
   rightColumn: {
     alignItems: "flex-end",
@@ -155,7 +154,6 @@ const styles = StyleSheet.create({
   },
   timeBadgeText: {
     fontSize: 11,
-    fontWeight: "600",
   },
 });
 

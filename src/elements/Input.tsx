@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   icon: { marginLeft: 8 },
   label: {
     fontSize: 14,
-    fontWeight: "500",
+
     marginBottom: 4,
     color: COLORS.light,
   },

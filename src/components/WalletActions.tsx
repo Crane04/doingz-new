@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   fundButtonText: {
     color: COLORS.dark,
-    fontWeight: "600",
+
     fontSize: 14,
     marginLeft: 4,
   },
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   sprayButtonText: {
     color: COLORS.light,
-    fontWeight: "600",
+
     fontSize: 14,
   },
 });

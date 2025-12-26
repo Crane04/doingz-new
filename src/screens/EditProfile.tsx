@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
   title: {
     color: COLORS.light,
     fontSize: 28,
-    fontWeight: "bold",
   },
   subtitle: {
     color: COLORS.light + "90",
@@ -150,7 +149,7 @@ const styles = StyleSheet.create({
   success: {
     fontSize: 14,
     color: COLORS.success,
-    fontWeight: "600",
+
     marginTop: 8,
     textAlign: "center",
   },

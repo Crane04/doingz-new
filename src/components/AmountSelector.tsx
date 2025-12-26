@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
   },
   amountSectionTitle: {
     fontSize: 16,
-    fontWeight: "600",
     color: COLORS.light,
     marginBottom: 12,
   },
@@ -85,7 +84,6 @@ const styles = StyleSheet.create({
   amountButtonText: {
     fontSize: 14,
     color: COLORS.light,
-    fontWeight: "600",
   },
   amountButtonTextSelected: {
     color: COLORS.dark,

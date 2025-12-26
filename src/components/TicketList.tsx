@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: "600",
+
     color: COLORS.light,
     marginVertical: 10,
   },
@@ -141,12 +141,10 @@ const styles = StyleSheet.create({
   purchaseButtonText: {
     color: COLORS.white,
     fontSize: 16,
-    fontWeight: "600",
   },
   eventButtonText: {
     color: COLORS.dark,
     fontSize: 16,
-    fontWeight: "600",
   },
 });
 

@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     paddingVertical: 4,
   },
-  text: { color: COLORS.dark, fontWeight: "600", fontSize: 14, marginLeft: 4 },
+  text: { color: COLORS.dark, fontSize: 14, marginLeft: 4 },
 });
 
 export default FundWalletButton;

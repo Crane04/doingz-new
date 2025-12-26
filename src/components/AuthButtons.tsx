@@ -4,12 +4,12 @@ import { NextButton } from "../elements";
 import { useAppleSignIn } from "../hooks/useAppleSignIn";
 import { useUser } from "../contexts/UserContext";
 import { router } from "expo-router";
-// import { useGoogleSignIn } from "hooks/useGoogleSignIn";
+import { useGoogleSignIn } from "hooks/useGoogleSignIn";
 
 export default function AuthOptions() {
   const { setUser } = useUser();
   const { appleSignIn } = useAppleSignIn();
-  // const { googleSignIn } = useGoogleSignIn();
+  const { googleSignIn } = useGoogleSignIn();
 
   return (
     <View style={{ width: "100%" }}>
@@ -37,12 +37,11 @@ export default function AuthOptions() {
           onPress={() => appleSignIn(setUser)}
         />
       ) : (
-        <></>
-        // <NextButton
-        //   text="Continue with Google"
-        //   leftIcon="logo-google"
-        //   onPress={() => googleSignIn(setUser)}
-        // />
+        <NextButton
+          text="Continue with Google"
+          leftIcon="logo-google"
+          onPress={() => googleSignIn(setUser)}
+        />
       )}
     </View>
   );

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: "700",
+
     color: COLORS.light,
   },
   content: {
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: "600",
+
     color: COLORS.light,
     marginVertical: 10,
   },
@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
   intentionText: {
     color: COLORS.light,
     fontSize: 14,
-    fontWeight: "600",
   },
   ticketContainer: {
     flexDirection: "row",

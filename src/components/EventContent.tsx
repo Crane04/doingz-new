@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: "700",
+
     color: COLORS.light,
   },
   date: {
@@ -64,9 +64,7 @@ const styles = StyleSheet.create({
     color: COLORS.light,
     marginTop: 8,
   },
-  hostStrong: {
-    fontWeight: "700",
-  },
+  hostStrong: {},
   people: {
     fontSize: 13,
     color: COLORS.lightGray,

@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: COLORS.light,
     marginBottom: 8,
-    fontWeight: "600",
   },
   bankSelector: {
     flexDirection: "row",

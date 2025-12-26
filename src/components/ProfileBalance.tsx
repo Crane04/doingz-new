@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   balance: {
     color: COLORS.secondary,
     fontSize: 16,
-    fontWeight: "600",
+
     marginTop: 10,
   },
 });

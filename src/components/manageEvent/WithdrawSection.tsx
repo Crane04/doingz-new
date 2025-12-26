@@ -123,7 +123,6 @@ const styles = StyleSheet.create({
   },
   withdrawButtonText: {
     fontSize: 18,
-    fontWeight: "bold",
   },
   withdrawNote: {
     fontSize: 14,
@@ -136,7 +135,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 10,
     fontSize: 14,
-    fontWeight: "600",
   },
 });
 

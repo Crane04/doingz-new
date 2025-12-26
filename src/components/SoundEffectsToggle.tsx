@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     color: COLORS.light,
-    fontWeight: "600",
   },
 });
 

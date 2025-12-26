@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
   username: {
     color: COLORS.light,
     fontSize: 18,
-    fontWeight: "600",
   },
   bellButton: {
     // position: "relative",
@@ -103,7 +102,6 @@ const styles = StyleSheet.create({
   badgeText: {
     color: COLORS.white,
     fontSize: 10,
-    fontWeight: "bold",
   },
   avatar: {
     width: 40,

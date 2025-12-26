@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   success: {
     fontSize: 14,
     color: COLORS.success,
-    fontWeight: "600",
+
     marginTop: 4,
     textAlign: "center",
   },

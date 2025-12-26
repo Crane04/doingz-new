@@ -106,8 +106,8 @@ const styles = StyleSheet.create({
     color: COLORS.lightGray,
     fontSize: 16,
     textAlign: "center",
-    fontWeight: "500",
   },
 });
 
 export default SprayMode;
+ 

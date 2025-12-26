@@ -86,7 +86,6 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 18,
-    fontWeight: "600",
   },
   loaderContainer: {
     marginTop: 30,

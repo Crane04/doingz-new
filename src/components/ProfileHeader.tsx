@@ -147,7 +147,6 @@ const styles = StyleSheet.create({
   fallbackText: {
     color: COLORS.light,
     fontSize: 50,
-    fontWeight: "800",
   },
   editButton: {
     position: "absolute",
@@ -165,7 +164,6 @@ const styles = StyleSheet.create({
   username: {
     color: COLORS.light,
     fontSize: 20,
-    fontWeight: "bold",
   },
   email: {
     color: COLORS.light,

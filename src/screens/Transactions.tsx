@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   title: {
     color: COLORS.light,
     fontSize: 24,
-    fontWeight: "bold",
+
     marginBottom: 20,
   },
   transactionItem: {
@@ -154,7 +154,6 @@ const styles = StyleSheet.create({
   transactionType: {
     color: COLORS.light,
     fontSize: 16,
-    fontWeight: "600",
   },
   transactionDate: {
     color: COLORS.lightGray,
@@ -165,7 +164,6 @@ const styles = StyleSheet.create({
   },
   transactionAmount: {
     fontSize: 18,
-    fontWeight: "bold",
   },
   transactionStatus: {
     color: COLORS.lightGray,

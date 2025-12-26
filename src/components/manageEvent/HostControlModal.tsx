@@ -199,7 +199,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: COLORS.light,
     marginBottom: 4,
-    fontWeight: "600",
   },
   actionDescription: {
     fontSize: 14,

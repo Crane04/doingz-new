@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     color: COLORS.light,
-    fontWeight: "600",
   },
   modeButtonContainer: {
     flexDirection: "row",
@@ -71,7 +70,6 @@ const styles = StyleSheet.create({
   modeButtonText: {
     fontSize: 14,
     color: COLORS.light,
-    fontWeight: "600",
   },
   modeButtonTextSelected: {
     color: COLORS.dark,

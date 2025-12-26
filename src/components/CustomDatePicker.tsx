@@ -315,7 +315,6 @@ const styles = StyleSheet.create({
     color: COLORS.lightGray,
     fontSize: 13,
     marginBottom: 10,
-    fontWeight: "500",
   },
 
   /* DAY CAROUSEL */
@@ -350,13 +349,13 @@ const styles = StyleSheet.create({
   weekdayText: {
     color: COLORS.lightGray,
     fontSize: 12,
-    fontWeight: "500",
+
     marginBottom: 4,
   },
   dayNumber: {
     color: COLORS.light,
     fontSize: 18,
-    fontWeight: "bold",
+
     marginBottom: 2,
   },
   monthText: {
@@ -389,10 +388,8 @@ const styles = StyleSheet.create({
   timeText: {
     color: COLORS.light,
     fontSize: 16,
-    fontWeight: "500",
   },
   timeTextSelected: {
     color: COLORS.white,
-    fontWeight: "bold",
   },
 });

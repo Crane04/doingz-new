@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
   fallbackText: {
     fontSize: 40,
     color: COLORS.white,
-    fontWeight: "bold",
   },
   messageIcon: {
     position: "absolute",

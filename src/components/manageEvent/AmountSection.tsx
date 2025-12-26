@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   amountValue: {
     fontSize: 48,
-    fontWeight: "bold",
+
     color: COLORS.secondary,
     textAlign: "center",
     marginBottom: 8,

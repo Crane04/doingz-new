@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
   balanceText: {
     fontSize: 18,
-    fontWeight: "600",
+
     color: COLORS.light,
     marginBottom: 30,
     textAlign: "center",

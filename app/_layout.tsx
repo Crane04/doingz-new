@@ -14,6 +14,7 @@ import {
 import { EventProvider } from "contexts/EventContext";
 import { StatusBar } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import SplashDemo from "screens/SplashDemo";
 
 if (!__DEV__) {
   console.log = () => {};
@@ -29,7 +30,7 @@ export default function RootLayout() {
   });
 
   if (!fontsLoaded) {
-    return null;
+    return <SplashDemo />;
   }
 
   return (

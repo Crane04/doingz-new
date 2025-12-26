@@ -176,7 +176,6 @@ const styles = StyleSheet.create({
   amountText: {
     color: COLORS.dark,
     fontSize: 14,
-    fontWeight: "bold",
   },
   activeIndicator: {
     position: "absolute",
@@ -189,7 +188,6 @@ const styles = StyleSheet.create({
   activeText: {
     color: COLORS.secondary,
     fontSize: 12,
-    fontWeight: "bold",
   },
   instruction: {
     marginTop: 25,

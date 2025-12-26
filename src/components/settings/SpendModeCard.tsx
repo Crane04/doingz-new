@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
   modeTitle: {
     color: COLORS.light,
     fontSize: 16,
-    fontWeight: "600",
+
     marginBottom: 2,
   },
   modeTitleSelected: {

@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   leaderboardTitle: {
     fontSize: 18,
-    fontWeight: "600",
+
     color: COLORS.light,
     marginBottom: 12,
   },
@@ -118,7 +118,6 @@ const styles = StyleSheet.create({
     width: 30,
     fontSize: 16,
     color: COLORS.light,
-    fontWeight: "600",
   },
   spenderUsername: {
     flex: 1,
@@ -128,7 +127,6 @@ const styles = StyleSheet.create({
   spenderAmount: {
     fontSize: 16,
     color: COLORS.secondary,
-    fontWeight: "600",
   },
 
   // MODAL STYLES
@@ -146,7 +144,7 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     fontSize: 20,
-    fontWeight: "700",
+    
     color: COLORS.light,
     marginBottom: 12,
   },
@@ -159,7 +157,7 @@ const styles = StyleSheet.create({
   closeButtonText: {
     color: COLORS.dark,
     textAlign: "center",
-    fontWeight: "700",
+    
     fontSize: 16,
   },
 });

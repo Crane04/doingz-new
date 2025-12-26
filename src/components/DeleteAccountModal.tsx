@@ -135,11 +135,9 @@ const styles = StyleSheet.create({
   },
   cancelText: {
     color: COLORS.light,
-    fontWeight: "600",
   },
   deleteText: {
     color: COLORS.light,
-    fontWeight: "600",
   },
 });
 

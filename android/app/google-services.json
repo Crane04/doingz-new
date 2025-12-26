@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "320102893499",
+    "project_id": "doingz-cd727",
+    "storage_bucket": "doingz-cd727.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320102893499:android:37f2fe70304bf4809aa69e",
+        "android_client_info": {
+          "package_name": "com.rahmayowa.doingz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIY1XxliaxD9OXhpAFe_ZPSVV8RtuGHo0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,7 @@
 <resources>
-  <string name="app_name">doingz</string>
+  <string name="app_name">Doingz</string>
+  <string name="expo_splash_screen_resize_mode" translatable="false">contain</string>
+  <string name="expo_splash_screen_status_bar_translucent" translatable="false">false</string>
   <string name="expo_runtime_version">1.0.0</string>
+  <string name="server_client_id">135430777069-i5vmjpv32119k14k1r0k6mm615kgm6ae.apps.googleusercontent.com</string>
 </resources>

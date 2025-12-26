@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
   hostBadgeText: {
     fontSize: 12,
     color: COLORS.secondary,
-    fontWeight: "600",
   },
   eventDescription: {
     fontSize: 16,

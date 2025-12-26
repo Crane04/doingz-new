@@ -232,7 +232,6 @@ const styles = StyleSheet.create({
   },
   filterOptionTextSelected: {
     color: COLORS.primary,
-    fontWeight: "600",
   },
   locationInput: {
     backgroundColor: COLORS.gray,

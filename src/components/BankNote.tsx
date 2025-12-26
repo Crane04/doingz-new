@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
   amount: {
     color: "#FFFFFF",
     fontSize: 36,
-    fontWeight: "900",
     textShadowColor: "rgba(0,0,0,0.8)",
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 6,
@@ -93,7 +92,7 @@ const styles = StyleSheet.create({
   brand: {
     color: "#FFFFFF",
     fontSize: 18,
-    fontWeight: "700",
+
     opacity: 0.95,
     textShadowColor: "rgba(0,0,0,0.7)",
     textShadowOffset: { width: 1, height: 1 },

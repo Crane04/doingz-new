@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   label: {
     color: COLORS.dark,
     fontSize: 14,
-    fontWeight: "600",
+
     marginRight: 8,
   },
   eyeButton: { padding: 4 },

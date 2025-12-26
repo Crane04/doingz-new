@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   },
   ticketType: {
     fontSize: 16,
-    fontWeight: "600",
+
     color: COLORS.light,
   },
   ticketPrice: {
@@ -116,7 +116,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: COLORS.light,
     marginHorizontal: 10,
-    fontWeight: "600",
   },
 });
 

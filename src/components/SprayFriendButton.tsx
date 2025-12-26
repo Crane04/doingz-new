@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     shadowRadius: 1.41,
     elevation: 2,
   },
-  text: { color: COLORS.light, fontWeight: "600", fontSize: 14 },
+  text: { color: COLORS.light, fontSize: 14 },
 });
 
 export default SprayFriendButton;
