@@ -31,7 +31,7 @@ const AmountSection: React.FC<AmountSectionProps> = ({
       ]}
     >
       <Text style={styles.amountLabel}>Total Doingz Received</Text>
-      <Text style={styles.amountValue}>🔥{displayAmount}</Text>
+      <Text style={styles.amountValue}>₦{displayAmount}</Text>
       <Text style={styles.amountSubtext}>From {attendees} attendees</Text>
     </Animated.View>
   );

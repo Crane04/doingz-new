@@ -18,6 +18,8 @@ export const useGoogleSignIn = () => {
       scopes: ["https://www.googleapis.com/auth/drive.readonly"],
       webClientId:
         "135430777069-i5vmjpv32119k14k1r0k6mm615kgm6ae.apps.googleusercontent.com",
+      iosClientId:
+        "135430777069-i5vmjpv32119k14k1r0k6mm615kgm6ae.apps.googleusercontent.com",
     });
   } catch (error) {}
 

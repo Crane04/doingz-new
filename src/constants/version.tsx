@@ -1,1 +1,1 @@
-export default "1.0.0-android";
+export default "1.0.0-ios";

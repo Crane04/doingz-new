@@ -12,10 +12,7 @@ const ProfileBalance: React.FC<{ balance: number }> = ({ balance }) => {
   }).format(balance);
 
   return (
-    <Text style={styles.balance}>
-      Available Doingz: 🔥
-      {formattedBalance}
-    </Text>
+    <Text style={styles.balance}>Available Doingz: ₦{formattedBalance}</Text>
   );
 };
 

@@ -72,7 +72,7 @@ const BalanceSection: React.FC<Props> = ({ balance, onWithdraw }) => {
         }}
       >
         <Text style={styles.balance}>
-          {showBalance ? `🔥${formattedBalance}` : "*****"}
+          {showBalance ? `₦${formattedBalance}` : "*****"}
         </Text>
 
         {!version?.hidden && balance > 0 && (

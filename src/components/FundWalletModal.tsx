@@ -14,6 +14,8 @@ import { fundWallet } from "services/walletService";
 import COLORS from "../constants/colors";
 import { useVersion } from "contexts/VersionContext";
 import { useWallet } from "contexts/WalletContext";
+import IAPProducts from "./IAPProducts";
+import HardCodedProducts from "./HardCodedProducts";
 
 interface FundWalletModalProps {
   visible: boolean;
@@ -30,11 +32,17 @@ const FundWalletModal: React.FC<FundWalletModalProps> = ({
   const [paymentLink, setPaymentLink] = useState<string | null>(null);
 
   const { version } = useVersion();
+
   const { refreshWallet } = useWallet();
 
-  const handleSubmit = async () => {
+  const handleProductPress = async (value: number) => {
+    setAmount(String(value));
+    await handleSubmit(value);
+  };
+
+  const handleSubmit = async (value?: number) => {
     const newErrors: { [key: string]: string } = {};
-    const parsedAmount = parseFloat(amount);
+    const parsedAmount = value ?? parseFloat(amount);
     if (isNaN(parsedAmount) || parsedAmount <= 0) {
       newErrors.amount = "Please enter a valid amount";
     }
@@ -94,55 +102,66 @@ const FundWalletModal: React.FC<FundWalletModalProps> = ({
       <View style={styles.modalContainer}>
         <View style={styles.fundContainer}>
           <ModalHeader onClose={handleClose} text="Get Doingz" />
-          <View style={styles.content}>
-            {!paymentLink ? (
-              <>
-                <Input
-                  label="Amount"
-                  value={amount}
-                  onChangeText={setAmount}
-                  keyboardType="numeric"
-                  error={errors.amount}
-                />
-                {errors.submit && (
-                  <Text style={styles.error}>{errors.submit}</Text>
-                )}
-              </>
-            ) : (
-              <View style={styles.linkContainer}>
-                <Text style={styles.linkTitle}>
-                  Payment link generated. Click below to proceed:
-                </Text>
-                <TouchableOpacity
-                  style={styles.linkButton}
-                  onPress={handleLinkPress}
-                  activeOpacity={0.7}
-                >
-                  <Text style={styles.linkText} numberOfLines={1}>
-                    {paymentLink}
+          {version?.hidden ? (
+            <IAPProducts />
+          ) : (
+            <HardCodedProducts onSelectAmount={handleProductPress} />
+          )}
+
+          {!version?.hidden && (
+            <View style={styles.content}>
+              {!paymentLink ? (
+                <>
+                  <Input
+                    label="Amount"
+                    value={amount}
+                    onChangeText={setAmount}
+                    keyboardType="numeric"
+                    error={errors.amount}
+                  />
+                  {errors.submit && (
+                    <Text style={styles.error}>{errors.submit}</Text>
+                  )}
+                </>
+              ) : (
+                <View style={styles.linkContainer}>
+                  <Text style={styles.linkTitle}>
+                    Payment link generated. Click below to proceed:
                   </Text>
-                </TouchableOpacity>
-                <Text style={styles.linkNote}>
-                  If the link doesn't open automatically, tap above to proceed
-                  with payment.
-                </Text>
-              </View>
-            )}
-          </View>
-          <ModalFooter
-            onClose={handleClose}
-            handleSubmit={handleSubmit}
-            closeText={
-              loading
-                ? "Funding Wallet Doingz"
-                : paymentLink
-                ? "Close"
-                : "Fund Wallet"
-            }
-            // submitText={paymentLink ? "Copy Link" : undefined}
-            disabled={loading || !!paymentLink}
-            // hideSubmit={!!paymentLink}
-          />
+                  <TouchableOpacity
+                    style={styles.linkButton}
+                    onPress={handleLinkPress}
+                    activeOpacity={0.7}
+                  >
+                    <Text style={styles.linkText} numberOfLines={1}>
+                      {paymentLink}
+                    </Text>
+                  </TouchableOpacity>
+                  <Text style={styles.linkNote}>
+                    If the link doesn't open automatically, tap above to proceed
+                    with payment.
+                  </Text>
+                </View>
+              )}
+            </View>
+          )}
+
+          {!version?.hidden && (
+            <ModalFooter
+              onClose={handleClose}
+              handleSubmit={handleSubmit}
+              closeText={
+                loading
+                  ? "Funding Wallet Doingz"
+                  : paymentLink
+                  ? "Close"
+                  : "Fund Wallet"
+              }
+              // submitText={paymentLink ? "Copy Link" : undefined}
+              disabled={loading || !!paymentLink}
+              // hideSubmit={!!paymentLink}
+            />
+          )}
         </View>
       </View>
     </Modal>

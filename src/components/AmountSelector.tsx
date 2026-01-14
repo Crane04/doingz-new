@@ -36,7 +36,7 @@ const AmountSelector: React.FC<AmountSelectorProps> = ({
           selectedAmount === amount && styles.amountButtonTextSelected,
         ]}
       >
-        {amount.toLocaleString("en-NG")}
+        ₦{amount.toLocaleString("en-NG")}
       </Text>
     </TouchableOpacity>
   );

@@ -43,6 +43,7 @@ export default function AuthOptions() {
           onPress={() => googleSignIn(setUser)}
         />
       )}
+      
     </View>
   );
 }

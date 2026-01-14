@@ -205,12 +205,10 @@ const ManageEvent: React.FC = () => {
             formatDate={formatDate}
           />
 
-          {!version?.hidden && (
-            <WithdrawSection
-              cashedOut={event.cashedOut}
-              eventIdentifier={event.eventId}
-            />
-          )}
+          <WithdrawSection
+            cashedOut={event.cashedOut}
+            eventIdentifier={event.eventId}
+          />
         </ScrollView>
 
         <HostControlsModal

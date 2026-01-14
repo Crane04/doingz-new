@@ -32,7 +32,7 @@ const TopSpenders: React.FC<TopSpendersProps> = ({ topSpenders }) => {
       <Text style={styles.spenderRank}>{index + 1}.</Text>
       <Text style={styles.spenderUsername}>{item.username}</Text>
       <Text style={styles.spenderAmount}>
-        🔥{item.amount.toLocaleString("en-NG")}
+        ₦{item.amount.toLocaleString("en-NG")}
       </Text>
     </View>
   );
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     fontSize: 20,
-    
+
     color: COLORS.light,
     marginBottom: 12,
   },
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
   closeButtonText: {
     color: COLORS.dark,
     textAlign: "center",
-    
+
     fontSize: 16,
   },
 });

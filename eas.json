@@ -14,8 +14,7 @@
     "production": {
       "autoIncrement": true,
       "android": {
-        "credentialsSource": "local",
-        "buildType": "apk"
+        "credentialsSource": "local"
       }
     }
   },
