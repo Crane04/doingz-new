@@ -37,8 +37,6 @@ const WithdrawSection: React.FC<WithdrawSectionProps> = ({
         amount: 2,
       });
 
-      console.log("Withdrawal Success:", response.data);
-
       setStatus("pending");
       setMessage({
         text: "Withdrawal request submitted successfully!",

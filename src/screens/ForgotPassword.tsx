@@ -4,12 +4,10 @@ import Text from "elements/Text";
 import Button from "elements/Button";
 import ForgotPasswordForm from "forms/ForgotPasswordForm";
 import { auth as styles } from "../styles";
-import { useNavigation } from "@react-navigation/native";
 import { requestPasswordReset } from "services/authService";
 import COLORS from "constants/colors";
 
 const ForgotPassword: React.FC = () => {
-  const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState<string | null>(null);
   const [messageColor, setMessageColor] = useState<string>(COLORS.danger);
@@ -27,7 +25,6 @@ const ForgotPassword: React.FC = () => {
 
     try {
       const response = await requestPasswordReset(data.email);
-      console.log(response);
       if (response.status === "success") {
         setMessageColor(COLORS.success);
         setMessage("Password reset link has been sent to your email.");
@@ -36,7 +33,6 @@ const ForgotPassword: React.FC = () => {
         setMessage(response.message || "Failed to send reset link.");
       }
     } catch (error: any) {
-      console.log(error);
       let errorMessage = "Something went wrong. Please try again later.";
 
       // Handle specific Axios-like errors gracefully

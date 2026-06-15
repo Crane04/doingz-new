@@ -38,8 +38,6 @@ const TicketModal: React.FC<TicketModalProps> = ({
   const handlePurchase = (
     selections: { type: string; price: number; quantity: number }[]
   ) => {
-    console.log(`Purchasing for ${eventName}:`, selections);
-    // Add actual purchase logic (e.g., API call)
     setQuantities(
       tickets.reduce((acc, ticket) => ({ ...acc, [ticket.type]: 0 }), {})
     );

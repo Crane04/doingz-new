@@ -47,7 +47,7 @@ export const usePushNotifications = (): PushNotificationHook | void => {
       }
 
       if (finalStatus !== "granted") {
-        console.log("Failed to get push token for push notification!");
+        console.warn("Push notification permission was not granted");
         return;
       }
 
@@ -55,7 +55,7 @@ export const usePushNotifications = (): PushNotificationHook | void => {
         projectId: Constants.expoConfig?.extra?.eas?.projectId as string,
       });
     } else {
-      console.log("Must use physical device for Push Notifications");
+      console.warn("Push notifications require a physical device");
     }
 
     if (Platform.OS === "android") {
@@ -83,9 +83,8 @@ export const usePushNotifications = (): PushNotificationHook | void => {
       });
 
     responseListener.current =
-      Notifications.addNotificationResponseReceivedListener((response) => {
-        // Handle notification response if needed
-        console.log("Notification response:", response);
+      Notifications.addNotificationResponseReceivedListener(() => {
+        // Hook for future notification routing.
       });
 
     return () => {

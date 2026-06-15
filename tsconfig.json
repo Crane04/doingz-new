@@ -9,6 +9,6 @@
       "@types/*": ["src/types/*"],
       "@/screens/*": ["src/screens/*"]
     },
-    "ignoreDeprecations": "6.0"
+    "ignoreDeprecations": "5.0"
   }
 }

@@ -29,16 +29,12 @@ export default function useIAPHandler() {
 
   const handlePurchase = async (productId: string) => {
     try {
-      try {
-        await requestPurchase({
-          type: "in-app",
-          request: { ios: { sku: productId }, android: { skus: [productId] } },
-        });
-      } catch (error) {
-        console.log(error);
-      }
+      await requestPurchase({
+        type: "in-app",
+        request: { ios: { sku: productId }, android: { skus: [productId] } },
+      });
     } catch (error) {
-      console.log("Purchase errorll:", error);
+      console.error("Purchase request failed:", error);
     }
   };
 

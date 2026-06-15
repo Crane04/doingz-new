@@ -1,4 +1,4 @@
-import { get, post } from "../utils/api"; // ⬅️ your wrapper (like post)
+import { get, post } from "../utils/api";
 import { getLikedEvents } from "./likesService";
 
 export interface EventResponse {
@@ -73,7 +73,6 @@ export interface CreateEventPayload {
 export const createEvent = async (eventData: CreateEventPayload) => {
   const formData = new FormData();
 
-  // Basic fields
   formData.append("name", eventData.name);
   formData.append("host", eventData.host);
   formData.append("startDate", eventData.startDate);
@@ -82,22 +81,18 @@ export const createEvent = async (eventData: CreateEventPayload) => {
   formData.append("description", eventData.description);
   formData.append("intention", eventData.intention);
 
-  // IMAGE — THE CRITICAL FIX
   if (eventData.image) {
     if (typeof eventData.image === "string") {
-      // Mobile: URI string
       formData.append("image", {
         uri: eventData.image,
         name: "event.jpg",
         type: "image/jpeg",
       } as any);
     } else {
-      console.log(eventData.image);
-      formData.append("image", eventData.image); // Just append the File directly
+      formData.append("image", eventData.image);
     }
   }
 
-  // Tickets
   if (eventData.tickets && eventData.tickets.length > 0) {
     eventData.tickets.forEach((ticket, index) => {
       formData.append(`tickets[${index}][type]`, ticket.type);
@@ -111,7 +106,6 @@ export const createEvent = async (eventData: CreateEventPayload) => {
 
   try {
     const response = await post<any>("/event/create", formData, {
-      // REMOVE THIS LINE — THIS IS THE #1 KILLER
       headers: { "Content-Type": "multipart/form-data" },
     });
 
@@ -130,7 +124,6 @@ export const fetchUserEvents = async (): Promise<EventResponse> => {
 
 export const fetchLikedEvents = async (): Promise<EventResponse> => {
   try {
-    // Get liked event IDs from AsyncStorage
     const likedEventIds = await getLikedEvents();
 
     if (likedEventIds.length === 0) {
@@ -141,15 +134,11 @@ export const fetchLikedEvents = async (): Promise<EventResponse> => {
       };
     }
 
-    // Convert array to comma-separated string for URL
     const eventIdsParam = likedEventIds.join(",");
 
-    // Send GET request
     const response = await get<EventResponse>(
       `event/get-liked?eventIds=${encodeURIComponent(eventIdsParam)}`
     );
-
-    console.log(response.data.data);
 
     return response.data;
   } catch (error) {

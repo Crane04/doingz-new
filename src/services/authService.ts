@@ -79,7 +79,6 @@ export const login = async (
   const token = loginResponse.data.authentication?.sessionToken;
   if (token) {
     await AsyncStorage.setItem("sessionToken", token);
-    console.log("Session Token stored:", token);
   } else {
     console.warn("No session token found in response");
   }
@@ -186,14 +185,12 @@ export const updateProfilePic = async (
     const formData = new FormData();
 
     if (typeof image === "string") {
-      // Mobile: URI object
       formData.append("image", {
         uri: image,
         type: "image/jpeg",
         name: "profile.jpg",
       } as any);
     } else {
-      console.log("here");
       formData.append("image", image);
     }
 
@@ -299,10 +296,9 @@ interface PushTokenData {
 
 export const setPushToken = async (token: string): Promise<void> => {
   try {
-    const response = await put<any, PushTokenData>("users/update", {
+    await put<any, PushTokenData>("users/update", {
       pushToken: token,
     });
-    console.log(response);
   } catch (error: any) {
     console.error(error);
   }

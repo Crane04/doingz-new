@@ -30,7 +30,6 @@ export const getUnreadNotificationCount = async (): Promise<number> => {
 export const getUserNotifications = async (): Promise<Notification[]> => {
   try {
     const response = await get<NotificationsResponse>("notifications/user");
-    console.log(response);
     return response.data.data;
   } catch (error) {
     console.error("Error fetching notifications:", error);

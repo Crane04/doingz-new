@@ -15,7 +15,6 @@ export const useAppleSignIn = () => {
 
   const appleSignIn = async (setUser: (user: User) => void) => {
     try {
-      // 🔐 Trigger Apple Sign-In prompt
       const credential = await AppleAuthentication.signInAsync({
         requestedScopes: [
           AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
@@ -34,20 +33,18 @@ export const useAppleSignIn = () => {
       );
 
       if (status === 200 && data?.data) {
-        console.log("✅ Apple sign-in successful:", data.data);
         setUser(data.data);
 
         const token = data.data.authentication?.sessionToken;
         if (token) {
           await AsyncStorage.setItem("sessionToken", token);
-          console.log("Session Token stored:", token);
           router.push("/(app)");
         } else {
           console.warn("No session token found in response");
         }
       } else {
         console.warn(
-          "❌ Apple sign-in failed:",
+          "Apple sign-in failed:",
           data?.message || "Unknown error"
         );
       }
@@ -55,9 +52,9 @@ export const useAppleSignIn = () => {
       return data;
     } catch (error: any) {
       if (error.code === "ERR_CANCELED") {
-        console.log("🚫 User canceled Apple sign-in.");
+        return null;
       } else {
-        console.error("⚠️ Apple sign-in error:", error);
+        console.error("Apple sign-in error:", error);
       }
       return null;
     }

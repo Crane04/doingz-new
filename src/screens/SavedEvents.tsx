@@ -1,12 +1,9 @@
 // screens/LikedEventsScreen.tsx
-import React, { useState, useEffect } from "react";
-import { View, ScrollView, StyleSheet, RefreshControl } from "react-native";
-import Container from "components/TabContainer";
-import { useNavigation } from "hooks/useNavigation";
+import React, { useCallback } from "react";
+import { ScrollView, StyleSheet, RefreshControl } from "react-native";
 
 // Components
 import PageHeader from "components/common/PageHeader";
-import EventsList from "components/myEvents/EventsList";
 import EmptyState from "components/myEvents/EmptyState";
 import LoadingState from "components/myEvents/LoadingState";
 
@@ -16,41 +13,31 @@ import { useEventLikes } from "hooks/useEventLikes";
 import COLORS from "constants/colors";
 import EventCard from "components/home/EventCard";
 import Header from "components/Header";
+import { useAsyncData } from "hooks/useAsyncData";
 
 const SavedEvents: React.FC = () => {
-  const [events, setEvents] = useState<BackendEvent[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const navigation = useNavigation();
   const { likedEvents } = useEventLikes();
 
-  const loadLikedEvents = async () => {
-    try {
-      setError(null);
-      const response = await fetchLikedEvents();
+  const loadLikedEvents = useCallback(async () => {
+    const response = await fetchLikedEvents();
 
-      if (response.status === "success") {
-        console.log(response);
-        setEvents(response.data);
-      } else {
-        setError(response.message || "Failed to load liked events");
-      }
-    } catch (err) {
-      console.error("Error fetching liked events:", err);
-      setError("Failed to load liked events");
+    if (response.status !== "success") {
+      throw new Error(response.message || "Failed to load liked events");
     }
-  };
 
-  useEffect(() => {
-    loadLikedEvents().finally(() => setLoading(false));
+    return response.data;
   }, []);
 
-  const onRefresh = async () => {
-    setRefreshing(true);
-    await loadLikedEvents();
-    setRefreshing(false);
-  };
+  const {
+    data: events,
+    error,
+    loading,
+    refresh,
+    refreshing,
+  } = useAsyncData<BackendEvent[]>({
+    initialData: [],
+    loader: loadLikedEvents,
+  });
 
   // Show empty state if no liked events in local storage
   if (!loading && likedEvents.length === 0) {
@@ -95,7 +82,7 @@ const SavedEvents: React.FC = () => {
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
-            onRefresh={onRefresh}
+            onRefresh={refresh}
             colors={[COLORS.primary]}
             tintColor={COLORS.primary}
           />

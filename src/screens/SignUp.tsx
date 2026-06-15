@@ -24,7 +24,7 @@ const SignUp: React.FC = () => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
     >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss()}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView
           contentContainerStyle={{
             // flexGrow: 1,

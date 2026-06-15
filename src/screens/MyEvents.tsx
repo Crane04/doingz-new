@@ -1,9 +1,8 @@
 // screens/MyEvents.tsx
-import React, { useState, useEffect } from "react";
+import React, { useCallback } from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import Container from "components/TabContainer";
-import { useNavigation } from "hooks/useNavigation";
 import COLORS from "constants/colors";
 
 // Components
@@ -15,48 +14,30 @@ import EmptyState from "components/myEvents/EmptyState";
 import { fetchUserEvents, BackendEvent } from "services/eventService";
 import Loading from "components/common/Loading";
 import Header from "components/Header";
+import { useAsyncData } from "hooks/useAsyncData";
+import { formatDisplayDate } from "utils/format";
 
 const MyEvents: React.FC = () => {
-  const [events, setEvents] = useState<BackendEvent[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  // Fetch user events from API
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const response = await fetchUserEvents();
+  const loadEvents = useCallback(async () => {
+    const response = await fetchUserEvents();
 
-        if (response.status === "success") {
-          const transformedEvents = response.data.map((event) => ({
-            ...event,
-          }));
-          setEvents(transformedEvents);
-        } else {
-          setError("Failed to load events");
-        }
-      } catch (err) {
-        console.error("Error fetching user events:", err);
-        setError("Failed to load events");
-      } finally {
-        setLoading(false);
-      }
-    };
+    if (response.status !== "success") {
+      throw new Error(response.message || "Failed to load events");
+    }
 
-    fetchEvents();
+    return response.data;
   }, []);
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
-  };
+  const {
+    data: events,
+    error,
+    loading,
+  } = useAsyncData<BackendEvent[]>({
+    initialData: [],
+    loader: loadEvents,
+  });
 
   const handleEventPress = (eventId: string) => {
     router.push({
@@ -103,7 +84,7 @@ const MyEvents: React.FC = () => {
           <EventsList
             events={events}
             onEventPress={handleEventPress}
-            formatDate={formatDate}
+            formatDate={formatDisplayDate}
           />
         )}
       </ScrollView>

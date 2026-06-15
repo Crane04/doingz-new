@@ -9,14 +9,12 @@ import React, {
 } from "react";
 import { fetchEvents as fetchEventsService } from "services/eventService";
 
-// 🎟 Ticket type
 type Ticket = {
   type: string;
   price: number;
   maxQuantity?: number;
 };
 
-// 📅 Event type
 export type Event = {
   id?: number;
   name: string;
@@ -38,7 +36,7 @@ type EventContextType = {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   setEvents: React.Dispatch<React.SetStateAction<Event[]>>;
-  fetchEvents: () => Promise<void>; // 👈 expose refresh function
+  fetchEvents: () => Promise<void>;
   loading: boolean;
 };
 
@@ -49,13 +47,11 @@ export const EventProvider = ({ children }: { children: ReactNode }) => {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // 👇 Wrap fetchEvents so we can call it from anywhere
   const fetchEvents = useCallback(async () => {
     try {
       setLoading(true);
 
       const res = await fetchEventsService();
-      console.log(res);
       if (res.status === "success") {
         const mapped = res.data.map((e: any) => ({
           id: Number(e._id),
@@ -77,18 +73,16 @@ export const EventProvider = ({ children }: { children: ReactNode }) => {
         console.error("Backend returned error:", res.message);
       }
     } catch (err) {
-      console.error("❌ Failed to fetch events", err);
+      console.error("Failed to fetch events", err);
     } finally {
       setLoading(false);
     }
   }, []);
 
-  // Fetch on mount
   useEffect(() => {
     fetchEvents();
   }, [fetchEvents]);
 
-  // 🔎 Filter events by query
   const filteredEvents = useMemo(() => {
     if (!searchQuery) return events;
     return events.filter(

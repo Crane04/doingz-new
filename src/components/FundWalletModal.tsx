@@ -14,7 +14,7 @@ import { fundWallet } from "services/walletService";
 import COLORS from "../constants/colors";
 import { useVersion } from "contexts/VersionContext";
 import { useWallet } from "contexts/WalletContext";
-import IAPProducts from "./IAPProducts";
+// import IAPProducts from "./IAPProducts";
 import HardCodedProducts from "./HardCodedProducts";
 
 interface FundWalletModalProps {
@@ -56,7 +56,7 @@ const FundWalletModal: React.FC<FundWalletModalProps> = ({
       const { authorization_url, autoCredit } = await fundWallet(
         parsedAmount,
         setErrors,
-        version?.hidden || false
+        version?.hidden || false,
       );
 
       if (autoCredit) {
@@ -102,11 +102,8 @@ const FundWalletModal: React.FC<FundWalletModalProps> = ({
       <View style={styles.modalContainer}>
         <View style={styles.fundContainer}>
           <ModalHeader onClose={handleClose} text="Get Doingz" />
-          {version?.hidden ? (
-            <IAPProducts />
-          ) : (
-            <HardCodedProducts onSelectAmount={handleProductPress} />
-          )}
+
+          <HardCodedProducts onSelectAmount={handleProductPress} />
 
           {!version?.hidden && (
             <View style={styles.content}>
@@ -154,8 +151,8 @@ const FundWalletModal: React.FC<FundWalletModalProps> = ({
                 loading
                   ? "Funding Wallet Doingz"
                   : paymentLink
-                  ? "Close"
-                  : "Fund Wallet"
+                    ? "Close"
+                    : "Fund Wallet"
               }
               // submitText={paymentLink ? "Copy Link" : undefined}
               disabled={loading || !!paymentLink}

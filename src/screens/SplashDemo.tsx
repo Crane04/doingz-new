@@ -4,7 +4,6 @@ import COLORS from "constants/colors";
 import Loader from "elements/Loader";
 
 export default function SplashDemo() {
-  console.log("SplashDemo rendered");
   return (
     <View style={styles.container}>
       <Image

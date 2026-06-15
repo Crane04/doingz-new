@@ -14,7 +14,6 @@
       "backgroundColor": "#0A0A0A"
     },
     "description": "The fastest way to spray money at events. Beautiful notes, real-time chat, leaderboards.",
-    "title": "Doingz – Send Money with Style",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.rahmayowa.doingz",
@@ -34,9 +33,6 @@
       "runtimeVersion": "1.0.0",
       "package": "com.rahmayowa.doingz",
       "googleServicesFile": "./android/app/google-services.json"
-    },
-    "notification": {
-      "vapidPublicKey": "50b99b7d-dbd3-4ec7-b4d8-2945586f5b4a"
     },
     "plugins": [
       "expo-font",

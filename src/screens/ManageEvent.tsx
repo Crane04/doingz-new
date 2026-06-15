@@ -54,7 +54,6 @@ const ManageEvent: React.FC = () => {
         const response = await fetchEventById(id);
 
         if (response.status === "success") {
-          console.log(response.data);
           setEvent(response.data);
 
           // Start animations after data is loaded
@@ -104,7 +103,6 @@ const ManageEvent: React.FC = () => {
   };
 
   const handleHostAction = (action: string) => {
-    console.log("Host action:", action, "for event:", id);
     switch (action) {
       case "leaderboard":
         // Navigate to leaderboard

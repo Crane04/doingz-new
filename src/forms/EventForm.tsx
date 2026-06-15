@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { EventFormProps } from "types/event";
 import { createEvent as styles } from "styles";
 import { Input, Text } from "elements";
 import IntentionSelector from "components/home/IntentionSelector";
@@ -12,27 +11,21 @@ import {
   StyleSheet,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useCreateEvent } from "contexts/CreateEventContext";
 
-const EventForm: React.FC<EventFormProps> = ({
-  name,
-  setName,
-  host,
-  setHost,
-  startDate,
-  setStartDate,
-  endDate,
-  setEndDate,
-  location,
-  setLocation,
-  description,
-  setDescription,
-  intention,
-  setIntention,
-  errors,
-  image,
-  setImage,
-}) => {
+const EventForm: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { state, setField, setImage, setIntention } = useCreateEvent();
+  const {
+    name,
+    host,
+    startDate,
+    endDate,
+    location,
+    description,
+    intention,
+    errors,
+  } = state;
 
   const [imagePreview, setImagePreview] = React.useState<string | null>();
   // Helper: Convert File → data URL for preview
@@ -97,39 +90,39 @@ const EventForm: React.FC<EventFormProps> = ({
       <Input
         label="Event Name"
         value={name}
-        onChangeText={setName}
+        onChangeText={(value) => setField("name", value)}
         error={errors.name}
       />
       <Input
         label="Host"
         value={host}
-        onChangeText={setHost}
+        onChangeText={(value) => setField("host", value)}
         error={errors.host}
       />
       <Input
         label="Start Date"
         value={startDate}
-        onChangeText={setStartDate}
+        onChangeText={(value) => setField("startDate", value)}
         error={errors.startDate}
         type="date"
       />
       <Input
         label="End Date"
         value={endDate}
-        onChangeText={setEndDate}
+        onChangeText={(value) => setField("endDate", value)}
         error={errors.endDate}
         type="date"
       />
       <Input
         label="Location"
         value={location}
-        onChangeText={setLocation}
+        onChangeText={(value) => setField("location", value)}
         error={errors.location}
       />
       <Input
         label="Description"
         value={description}
-        onChangeText={setDescription}
+        onChangeText={(value) => setField("description", value)}
         error={errors.description}
       />
 
