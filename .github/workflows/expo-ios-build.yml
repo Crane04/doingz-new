@@ -67,6 +67,24 @@ jobs:
         env:
           APPLE_API_KEY_CONTENT: ${{ inputs.apple_api_key_content }}
 
+      - name: Check Expo token
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          if [ -z "$EXPO_TOKEN" ]; then
+            echo "Missing EXPO_TOKEN GitHub secret. Create an Expo access token at https://expo.dev/accounts/[account]/settings/access-tokens and add it to this repo under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+      - name: Initialize git repository for EAS
+        working-directory: project
+        run: |
+          git init
+          git config user.name "Ferome"
+          git config user.email "builds@ferome.local"
+          git add -A -- ':!node_modules' ':!.expo' ':!dist' ':!build'
+          git commit -m "Ferome build snapshot" --allow-empty
+
       - name: Build iOS app
         working-directory: project
         env:
